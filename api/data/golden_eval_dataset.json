@@ -1,0 +1,362 @@
+[
+  {
+    "id": "DEF-001",
+    "query": "What is STAT1 in SLE?",
+    "expected_intent": "DEFINITIONAL",
+    "expected_source_topic": "ARCH Target Dossiers & Slide 14",
+    "golden_answer": "STAT1 (Signal Transducer and Activator of Transcription 1) is a key downstream mediator of Type I and Type II interferon signaling in Systemic Lupus Erythematosus (SLE), with an ARCH SWAG score of 7.92 and 89% pathway causal score [[source:ARCH-TARGET-STAT1#1]].",
+    "notes": "Slide 14 target CI dossier"
+  },
+  {
+    "id": "DEF-002",
+    "query": "Define γδ17 T-cell line and its role in IL-23 signaling",
+    "expected_intent": "DEFINITIONAL",
+    "expected_source_topic": "Preclinical Screen & Slide 22",
+    "golden_answer": "γδ17 T-cells are innate-like lymphocytes expressing the γδ T-cell receptor that rapidly produce IL-17A and IL-22 upon IL-23 receptor stimulation, driving acute barrier inflammation and epidermal hyperplasia [[source:EL-2026-00002538#1]].",
+    "notes": "Slide 22 preclinical screen biological axis"
+  },
+  {
+    "id": "DEF-003",
+    "query": "What is mTORC1?",
+    "expected_intent": "DEFINITIONAL",
+    "expected_source_topic": "Slide 22 Preclinical Target Dossier",
+    "golden_answer": "mTORC1 (mechanistic target of rapamycin complex 1) is a nutrient- and growth factor-sensing multiprotein kinase complex containing mTOR, Raptor, and mLST8 that phosphorylates p70S6K and 4E-BP1 to prime translational elongation during cytokine-mediated T-cell activation [[source:PUB-34982103#1]].",
+    "notes": "Nutrient sensor downstream of IL-23"
+  },
+  {
+    "id": "DEF-004",
+    "query": "Define SWAG score in the ARCH platform",
+    "expected_intent": "DEFINITIONAL",
+    "expected_source_topic": "ARCH Platform Methodology & Slide 11",
+    "golden_answer": "SWAG (Shared Weighted Association and Genetics) score is AbbVie's multi-omics target prioritization metric combining genome-wide association studies (GWAS), causal functional genomics, disease pathway topology, and clinical competitive intelligence into a normalized 0-10 target confidence index [[source:ARCH-METHODOLOGY#1]].",
+    "notes": "ARCH composite metric definition"
+  },
+  {
+    "id": "DEF-005",
+    "query": "What is TYK2 in the AbbVie autoimmune pipeline?",
+    "expected_intent": "DEFINITIONAL",
+    "expected_source_topic": "Slide 11 ARCH MOA Ranking",
+    "golden_answer": "TYK2 (Tyrosine Kinase 2) is an intracellular Janus family kinase transducing IL-12, IL-23, and Type I IFN signals with an ARCH SWAG score of 8.75 and 91% association strength in SLE, potently inhibited by lead candidate A-1984701.0 (IC50 = 12.4 nM) [[source:ARCH-TARGET-TYK2#1]].",
+    "notes": "Slide 11 & Slide 22 lead target"
+  },
+  {
+    "id": "DEF-006",
+    "query": "What is gp130 (IL6ST)?",
+    "expected_intent": "DEFINITIONAL",
+    "expected_source_topic": "IL-6 Signaling Cascade & Slide 19",
+    "golden_answer": "gp130 (glycoprotein 130, encoded by IL6ST) is the common signal-transducing transmembrane receptor subunit shared by the IL-6 cytokine family that forms hexameric signaling complexes to activate JAK1 and STAT3 [[source:ARCH-TARGET-IL6ST#1]].",
+    "notes": "Slide 19 signaling cascade node"
+  },
+  {
+    "id": "DEF-007",
+    "query": "What is TNFSF13B (BAFF)?",
+    "expected_intent": "DEFINITIONAL",
+    "expected_source_topic": "Slide 16 & Slide 19 Combo Mechanisms",
+    "golden_answer": "TNFSF13B (B-cell activating factor, BAFF) is a TNF superfamily ligand essential for the survival, maturation, and autoantibody production of transitional and mature B-cells and plasma cells in SLE [[source:ARCH-TARGET-TNFSF13B#1]].",
+    "notes": "Partner target for IL-6 combo"
+  },
+  {
+    "id": "DEF-008",
+    "query": "What is sAB Intact score?",
+    "expected_intent": "DEFINITIONAL",
+    "expected_source_topic": "GTM Graph Scorer & Slide 17",
+    "golden_answer": "sAB Intact score is a computational synergy metric quantifying biological pathway separation and structural intactness between two drug targets in the biological knowledge graph, where higher values (e.g. 0.80 for IL6+TNFSF13B) indicate complementary non-redundant therapeutic engagement [[source:GTM-SCORER#1]].",
+    "notes": "Slide 17 3D scatter metric"
+  },
+  {
+    "id": "DEF-009",
+    "query": "What is ABBV-599?",
+    "expected_intent": "DEFINITIONAL",
+    "expected_source_topic": "Slide 13 Clinical Trial M19-130",
+    "golden_answer": "ABBV-599 is an AbbVie investigational fixed-dose combination therapy consisting of Elsubrutinib (60 mg BTK inhibitor) and Upadacitinib (30 mg JAK1 selective inhibitor) evaluated in Phase 2 clinical trial NCT03978520 for active SLE [[source:M19-130-CSR#1]].",
+    "notes": "Slide 13 featured combo asset"
+  },
+  {
+    "id": "DEF-010",
+    "query": "What is the SRI-4 composite endpoint in SLE clinical trials?",
+    "expected_intent": "DEFINITIONAL",
+    "expected_source_topic": "Clinical Endpoints & Slide 13",
+    "golden_answer": "SRI-4 (Systemic Lupus Erythematosus Responder Index 4) is a validated composite clinical endpoint requiring a ≥4-point reduction in SLEDAI-2K score, no new BILAG A organ flare or ≤1 new BILAG B flare, and no worsening (≤0.3-point increase) in Physician Global Assessment (PGA) [[source:M19-130-CSR#1]].",
+    "notes": "Slide 13 primary endpoint"
+  },
+  {
+    "id": "PROT-001",
+    "query": "How do I run the Tyk2 LPAR1 cellular assay?",
+    "expected_intent": "PROTOCOL",
+    "expected_source_topic": "Slide 22 ELN EL-2026-00002538",
+    "golden_answer": "1. Seed γδ17 T-cells at 2.5 x 10^5 cells/well in 96-well flat-bottom plates in complete RPMI-1640.\n2. Pre-treat with candidate inhibitor A-1984701.0 (10-point 3-fold serial dilution starting at 10 μM) for 60 min at 37°C.\n3. Stimulate with 20 ng/mL recombinant mouse IL-23 for exactly 15 min.\n4. Fix cells with 4% PFA for 15 min, permeabilize with ice-cold 90% methanol for 30 min.\n5. Stain with anti-p-STAT3 (Tyr705)-AF647 and analyze by flow cytometry [[source:EL-2026-00002538#1]].",
+    "notes": "Standard in vitro TYK2/LPAR assay protocol"
+  },
+  {
+    "id": "PROT-002",
+    "query": "What is the SOP for the imiquimod-induced skin inflammation model?",
+    "expected_intent": "PROTOCOL",
+    "expected_source_topic": "Slide 22 In Vivo Preclinical Screen",
+    "golden_answer": "1. Day 0: Shave dorsal skin (approx 2x3 cm) and clean with 70% ethanol.\n2. Days 1-6: Topically apply 62.5 mg of 5% imiquimod cream (Aldara) once daily.\n3. Administer candidate inhibitor A-1984701.0 (30 mg/kg IP QD) or topical formulation (1% w/w BID) 1 hr prior to IMQ application.\n4. Daily: Measure ear thickness using digital micrometer and score erythema/scaling (0-4 scale).\n5. Day 7: Euthanize, harvest skin biopsies for H&E acanthosis quantification and qPCR [[source:EL-2026-00002538#1]].",
+    "notes": "In vivo imiquimod SOP"
+  },
+  {
+    "id": "PROT-003",
+    "query": "What is the procedure for intraperitoneal (IP) drug dosing in mice?",
+    "expected_intent": "PROTOCOL",
+    "expected_source_topic": "In Vivo Animal SOP & Slide 22",
+    "golden_answer": "1. Prepare compound formulation in vehicle (5% DMSO, 40% PEG300, 5% Tween-80, 50% sterile saline).\n2. Restrain mouse securely in scruff hold, tilting head downward to shift visceral organs cranial.\n3. Insert 27G needle bevel up at a 30-45° angle into lower right abdominal quadrant.\n4. Aspirate slightly to ensure no bowel or urinary bladder penetration, then slowly inject volume (max 10 mL/kg).\n5. Withdraw needle gently and observe mouse for 15 min post-injection [[source:EL-2026-00002538#1]].",
+    "notes": "Standard IP injection SOP"
+  },
+  {
+    "id": "PROT-004",
+    "query": "What is the procedure for topical drug formulation and application on shaved mouse dorsal skin?",
+    "expected_intent": "PROTOCOL",
+    "expected_source_topic": "Preclinical Formulations & Slide 22",
+    "golden_answer": "1. Formulate test compound A-1984701.0 or A-2208690.0 at 1.0% w/w in acetone/olive oil (4:1 v/v) vehicle.\n2. Verify homogeneous dissolution via vortexing and sterile filtration (0.22 μm PTFE).\n3. Using a calibrated micropipette, apply exactly 25 μL of formulation evenly across the shaved dorsal skin area.\n4. Allow formulation to dry for 3-5 min before returning animal to housing cage [[source:EL-2026-00002538#1]].",
+    "notes": "Topical application SOP"
+  },
+  {
+    "id": "PROT-005",
+    "query": "What is the procedure for oral gavage dosing in rodent models?",
+    "expected_intent": "PROTOCOL",
+    "expected_source_topic": "In Vivo Pharmacokinetics SOP",
+    "golden_answer": "1. Formulate compound in 0.5% methylcellulose / 0.1% Tween-80 in deionized water.\n2. Measure appropriate gavage needle length (from tip of nose to last rib).\n3. Restrain animal firmly with neck fully extended.\n4. Introduce curved stainless steel ball-tipped gavage needle gently into the pharynx, following esophageal curve without force.\n5. Deliver bolus dose (5-10 mL/kg) smoothly and inspect for normal respiration [[source:EL-2026-00002538#1]].",
+    "notes": "Oral gavage SOP"
+  },
+  {
+    "id": "PROT-006",
+    "query": "SOP for phospho-flow cytometry detection of p-STAT3 and p-S6 in γδ17 T-cells",
+    "expected_intent": "PROTOCOL",
+    "expected_source_topic": "Slide 22 Assay Readouts",
+    "golden_answer": "1. Following 15 min cytokine stimulation, immediately add pre-warmed 16% formaldehyde to final concentration of 4% (10 min, 37°C).\n2. Centrifuge at 350 x g for 5 min, aspirate supernatant.\n3. Permeabilize cell pellet by slowly adding ice-cold 90% methanol while vortexing (30 min on ice).\n4. Wash twice with staining buffer (PBS + 0.5% BSA + 0.05% NaN3).\n5. Resuspend in fluorochrome antibody cocktail: anti-p-STAT3 (AF647) and anti-p-S6 (PE-Cy7) for 45 min in dark at RT.\n6. Wash and acquire ≥50,000 gated singlet events on cytometer [[source:EL-2026-00002538#1]].",
+    "notes": "Phospho-flow SOP"
+  },
+  {
+    "id": "PROT-007",
+    "query": "SOP for γδ17 T-cell stimulation with recombinant mouse IL-23",
+    "expected_intent": "PROTOCOL",
+    "expected_source_topic": "Slide 22 ELN Screen",
+    "golden_answer": "1. Reconstitute recombinant mouse IL-23 (carrier-free) in sterile PBS + 0.1% BSA at 100 μg/mL stock and store at -80°C.\n2. Dilute stock in warm RPMI-1640 complete medium to 200 ng/mL working solution (10X).\n3. Add 10 μL of 10X IL-23 to 90 μL cell suspension (final concentration 20 ng/mL).\n4. Incubate at 37°C, 5% CO2 for exactly 15 min for phosphorylation kinetics or 48 hr for cytokine ELISA [[source:EL-2026-00002538#1]].",
+    "notes": "Cytokine stimulation SOP"
+  },
+  {
+    "id": "PROT-008",
+    "query": "Protocol for measuring ear thickness and epidermal acanthosis in imiquimod model",
+    "expected_intent": "PROTOCOL",
+    "expected_source_topic": "Slide 22 In Vivo Endpoints",
+    "golden_answer": "1. Daily at 09:00, immobilize mouse and measure ear thickness at middle third using a digital spring-loaded micrometer (Mitutoyo 0.001 mm).\n2. Record 3 consecutive measurements per ear and calculate mean daily ear swelling (Δ thickness = Day N - Day 0).\n3. On Day 7, dissect ear tissue, fix in 10% neutral buffered formalin for 24 hr, embed in paraffin.\n4. Section at 4 μm, stain with Hematoxylin & Eosin (H&E), and quantify epidermal thickness (acanthosis) across 10 random high-power fields (200x) via ImageJ [[source:EL-2026-00002538#1]].",
+    "notes": "Ear swelling and histology protocol"
+  },
+  {
+    "id": "PROT-009",
+    "query": "SOP for RNA extraction from mouse skin biopsies for qPCR",
+    "expected_intent": "PROTOCOL",
+    "expected_source_topic": "Molecular Biology SOP",
+    "golden_answer": "1. Harvest 4 mm punch biopsy from dorsal skin, flash freeze in liquid nitrogen, and store at -80°C.\n2. Homogenize frozen tissue in 1 mL TRIzol reagent using bead beater (50 Hz, 2x 2 min).\n3. Add 200 μL chloroform, shake vigorously for 15 sec, incubate at RT for 3 min, centrifuge at 12,000 x g for 15 min at 4°C.\n4. Transfer aqueous phase to RNeasy spin column and perform on-column DNase I digestion.\n5. Elute in 30 μL RNase-free water; assess A260/A280 ratio (≥1.9) on Nanodrop [[source:PUB-34982103#1]].",
+    "notes": "RNA extraction SOP"
+  },
+  {
+    "id": "PROT-010",
+    "query": "Protocol for calculating IC50 values from 10-point dose titration assay",
+    "expected_intent": "PROTOCOL",
+    "expected_source_topic": "Quantitative Pharmacology SOP & Slide 22",
+    "golden_answer": "1. Normalize raw fluorescent/MFI signal to positive control (100% activation, vehicle + IL-23) and negative control (0% activation, vehicle alone).\n2. Transform compound concentrations to logarithmic scale: X = log10([Compound in M]).\n3. Fit data to a non-linear 4-parameter logistic (4PL) regression curve:\n   Y = Bottom + (Top - Bottom) / (1 + 10^((logIC50 - X) * HillSlope)).\n4. Constrain Top to 100% and Bottom to 0% unless basal inhibition occurs.\n5. Report IC50 with 95% confidence intervals and goodness-of-fit R^2 ≥ 0.95 [[source:EL-2026-00002538#1]].",
+    "notes": "IC50 4PL curve fitting SOP"
+  },
+  {
+    "id": "PROT-011",
+    "query": "SOP for vehicle preparation (0.1% DMSO in PBS)",
+    "expected_intent": "PROTOCOL",
+    "expected_source_topic": "Assay Buffer SOP",
+    "golden_answer": "1. In a sterile biosafety cabinet, dispense 99.9 mL of sterile Dulbecco's Phosphate-Buffered Saline (DPBS, pH 7.4).\n2. Using a calibrated positive-displacement pipette, add exactly 100 μL of molecular biology grade DMSO (≥99.9% purity).\n3. Filter solution through a 0.22 μm PES membrane filter.\n4. Store at room temperature protected from light; discard after 30 days [[source:EL-2026-00002538#1]].",
+    "notes": "Vehicle buffer preparation"
+  },
+  {
+    "id": "PROT-012",
+    "query": "Protocol for cell viability gating with Zombie Aqua fixable viability dye",
+    "expected_intent": "PROTOCOL",
+    "expected_source_topic": "Flow Cytometry Gating SOP",
+    "golden_answer": "1. Wash cells once with PBS without protein/serum (centrifuge 350 x g, 5 min).\n2. Dilute Zombie Aqua dye 1:1000 in PBS.\n3. Resuspend pellet in 100 μL diluted dye per 10^6 cells; incubate for 15 min at RT in dark.\n4. Wash cells with FACS buffer (PBS + 1% FBS) to quench excess dye.\n5. Gating strategy: FSC-A vs SSC-A (cells) → FSC-H vs FSC-A (singlets) → Zombie Aqua negative (live cells >90%) [[source:PUB-34982103#1]].",
+    "notes": "Viability gating SOP"
+  },
+  {
+    "id": "PROT-013",
+    "query": "SOP for compound serial dilution series (10 μM to 0.1 nM)",
+    "expected_intent": "PROTOCOL",
+    "expected_source_topic": "Compound Management SOP",
+    "golden_answer": "1. Prepare 10 mM compound master stock in 100% anhydrous DMSO.\n2. In a 96-well V-bottom polypropylene plate, prepare 1000X intermediate in DMSO (10 mM down to 0.1 μM by 1:3.16 serial dilution across 10 points).\n3. Transfer 2 μL of each 1000X intermediate into 198 μL complete culture medium (10X working solution, 1% DMSO).\n4. Add 10 μL of 10X solution into 90 μL cell culture (final assay concentration 10 μM down to 0.1 nM, 0.1% DMSO) [[source:EL-2026-00002538#1]].",
+    "notes": "Serial dilution SOP"
+  },
+  {
+    "id": "PROT-014",
+    "query": "Protocol for ELISA quantification of secreted IL-17A cytokine",
+    "expected_intent": "PROTOCOL",
+    "expected_source_topic": "Immunoassay SOP",
+    "golden_answer": "1. Coat high-binding 96-well plate with 100 μL/well capture anti-mouse IL-17A antibody (2 μg/mL in PBS) overnight at 4°C.\n2. Wash 3x with PBS-T (0.05% Tween-20) and block with 200 μL/well 1% BSA in PBS for 1 hr at RT.\n3. Add 100 μL of cell culture supernatants or recombinant standards; incubate 2 hr at RT.\n4. Wash 4x, add 100 μL biotinylated detection antibody (0.5 μg/mL) for 1 hr.\n5. Wash 4x, add Streptavidin-HRP (1:1000) for 30 min, develop with TMB substrate for 15 min, stop with 2N H2SO4, and read absorbance at 450 nm [[source:EL-2026-00002538#1]].",
+    "notes": "ELISA immunoassay SOP"
+  },
+  {
+    "id": "PROT-015",
+    "query": "SOP for cryopreservation and thawing of γδ17 T-cell lines",
+    "expected_intent": "PROTOCOL",
+    "expected_source_topic": "Cell Culture SOP",
+    "golden_answer": "1. Freezing: Resuspend exponentially growing cells in freezing medium (90% FBS + 10% DMSO) at 5 x 10^6 cells/mL in cryovials.\n2. Place vials in Mr. Frosty container at -80°C for 24 hr, then transfer to liquid nitrogen vapor phase.\n3. Thawing: Warm cryovial rapidly in 37°C water bath until tiny ice crystal remains (~90 sec).\n4. Slowly add 10 mL warm complete RPMI-1640 dropwise to prevent osmotic shock.\n5. Centrifuge at 300 x g for 5 min, resuspend in fresh medium with 10 ng/mL IL-7, and assess viability [[source:EL-2026-00002538#1]].",
+    "notes": "Cryopreservation SOP"
+  },
+  {
+    "id": "TSH-001",
+    "query": "My in vitro γδ17 T-cell IL-23 assay has high background fluorescence in uninhibited vehicle control wells",
+    "expected_intent": "TROUBLESHOOTING",
+    "expected_source_topic": "Assay Troubleshooting & QC Checks",
+    "golden_answer": "1. Verify laser baseline voltage and PMT calibration on cytometer; excessive gain on the AF647/APC channel causes artifactual baseline shift.\n2. Check cell fixation timing: prolonged formaldehyde fixation (>20 min) or incomplete methanol wash creates autofluorescent protein crosslinks.\n3. Confirm cytokine vehicle stock has not undergone >2 freeze-thaw cycles causing spontaneous aggregate formation.\n4. Validate blocking step with 0.5% BSA prior to primary antibody addition [[source:EL-2026-00002538#1]].\nNotice: This diagnostic guidance does not replace PI or lab-lead review.",
+    "notes": "Troubleshooting high background"
+  },
+  {
+    "id": "TSH-002",
+    "query": "Unexpectedly low log2FC observed in mTORC2 readout during compound screening",
+    "expected_intent": "TROUBLESHOOTING",
+    "expected_source_topic": "mTORC2 Assay Troubleshooting",
+    "golden_answer": "1. Check p-Akt (Ser473) antibody specificity and lot number; ensure antibody is not cross-reacting with unphosphorylated Akt.\n2. Verify compound dissolution: dual mTORC1/2 inhibitors (e.g. A-2208690.0) can precipitate out of aqueous assay buffer if DMSO stock is thawed improperly.\n3. Confirm assay duration: mTORC2 substrate phosphorylation peaks between 30-60 min post-stimulation; harvesting at 15 min captures mTORC1 (p-S6) but sub-maximal mTORC2 signal.\n4. Check cell serum starvation status: high basal serum insulin in RPMI activates background PI3K/Akt pathway [[source:PUB-34982103#1]].\nNotice: This diagnostic guidance does not replace PI or lab-lead review.",
+    "notes": "Troubleshooting low mTORC2 logFC"
+  },
+  {
+    "id": "TSH-003",
+    "query": "Inconsistent γδ17 T-cell proliferation and cytokine production across biological replicates",
+    "expected_intent": "TROUBLESHOOTING",
+    "expected_source_topic": "Cell Line QC Troubleshooting",
+    "golden_answer": "1. Measure baseline cell viability: ensure viability >90% prior to seeding; apoptotic cultures exhibit skewed IL-23R surface expression.\n2. Check cell passage number: γδ17 T-cell lines lose RORγt expression and IL-23 responsiveness after passage 15.\n3. Screen for mycoplasma contamination using PCR or luminescence mycoplasma detection assay.\n4. Validate recombinant IL-23 lot potency against a known biological standard (ED50 typically 0.5-2.0 ng/mL) [[source:EL-2026-00002538#1]].\nNotice: This diagnostic guidance does not replace PI or lab-lead review.",
+    "notes": "Troubleshooting cell inconsistency"
+  },
+  {
+    "id": "TSH-004",
+    "query": "Precipitation of candidate lead A-1984701.0 at 10 μM top concentration in assay buffer",
+    "expected_intent": "TROUBLESHOOTING",
+    "expected_source_topic": "Formulation & Solubility Troubleshooting",
+    "golden_answer": "1. Ensure compound is completely dissolved in 100% anhydrous DMSO at 10 mM before intermediate aqueous dilution.\n2. Perform dilution into warm (37°C) complete RPMI-1640 medium under rapid mixing.\n3. Limit top assay concentration to 5 μM if aqueous solubility limit is exceeded, or add 0.05% Pluronic F-127 surfactant.\n4. Confirm no moisture condensation occurred in DMSO stock vial during freezer storage [[source:EL-2026-00002538#1]].\nNotice: This diagnostic guidance does not replace PI or lab-lead review.",
+    "notes": "Troubleshooting compound precipitation"
+  },
+  {
+    "id": "TSH-005",
+    "query": "Loss of baseline STAT3 phosphorylation in positive control wells treated with 20 ng/mL IL-23",
+    "expected_intent": "TROUBLESHOOTING",
+    "expected_source_topic": "Phospho-Flow Troubleshooting",
+    "golden_answer": "1. Test a freshly thawed aliquot of recombinant mouse IL-23; cytokine undergoes rapid bioactivity loss if stored at 4°C >7 days.\n2. Confirm permeabilization efficiency: ensure 90% methanol was kept at -20°C prior to use; inadequate permeabilization prevents intranuclear p-STAT3 staining.\n3. Check stimulation temperature: ensure 37°C incubator thermometer is calibrated; room-temperature stimulation reduces kinase catalytic rate by >70%.\n4. Verify IL-23R surface expression on cell line by surface staining with anti-IL-23R-PE [[source:EL-2026-00002538#1]].\nNotice: This diagnostic guidance does not replace PI or lab-lead review.",
+    "notes": "Troubleshooting positive control failure"
+  },
+  {
+    "id": "TSH-006",
+    "query": "Dorsal skin ulceration exceeding humane endpoint criteria in imiquimod animal model",
+    "expected_intent": "TROUBLESHOOTING",
+    "expected_source_topic": "In Vivo Animal Welfare Troubleshooting",
+    "golden_answer": "1. Reduce daily IMQ cream dose from 62.5 mg to 50 mg or shorten dosing duration to 5 consecutive days.\n2. Check clippers during shaving: micro-abrasions from dull clippers cause mechanical ulceration that synergizes with IMQ toxicity.\n3. Ensure housing cages have soft paper bedding (Alpha-Dri) and individual separation if cage-mate barbering is observed.\n4. Consult attending lab veterinarian for analgesia or early study termination criteria [[source:EL-2026-00002538#1]].\nNotice: This diagnostic guidance does not replace PI or lab-lead review.",
+    "notes": "Troubleshooting animal ulceration"
+  },
+  {
+    "id": "TSH-007",
+    "query": "High cell mortality (>20%) observed after 15 min cytokine incubation step",
+    "expected_intent": "TROUBLESHOOTING",
+    "expected_source_topic": "Cell Toxicity Troubleshooting",
+    "golden_answer": "1. Check final DMSO concentration in wells: ensure vehicle DMSO is ≤0.1% v/v (higher concentrations cause acute membrane permeabilization).\n2. Inspect centrifugation speeds: centrifuge cells at ≤350 x g; high g-force shears primary T-cell blasts.\n3. Verify buffer osmolarity (290-310 mOsm/kg) and pH (7.4 ± 0.05).\n4. Ensure cells were in exponential growth phase (viability >90%) before initiating assay [[source:PUB-34982103#1]].\nNotice: This diagnostic guidance does not replace PI or lab-lead review.",
+    "notes": "Troubleshooting cell mortality"
+  },
+  {
+    "id": "TSH-008",
+    "query": "Drift in IC50 values across replicate 96-well assay plates on different days",
+    "expected_intent": "TROUBLESHOOTING",
+    "expected_source_topic": "Assay Robustness & Plate Drift",
+    "golden_answer": "1. Check edge effect: fill outer perimeter wells with 200 μL sterile PBS to prevent evaporation during 37°C incubation.\n2. Use automated liquid handling or multichannel pipettes calibrated within ±1.5% accuracy.\n3. Normalize each plate independently to its internal vehicle and positive control columns (Columns 1 and 12).\n4. Ensure compound stock freeze-thaw cycles are standardized to ≤2 cycles [[source:EL-2026-00002538#1]].\nNotice: This diagnostic guidance does not replace PI or lab-lead review.",
+    "notes": "Troubleshooting plate drift"
+  },
+  {
+    "id": "TSH-009",
+    "query": "Failure to detect p-S6 signal on flow cytometer APC channel",
+    "expected_intent": "TROUBLESHOOTING",
+    "expected_source_topic": "Cytometer Filter & Laser Troubleshooting",
+    "golden_answer": "1. Verify red laser (633/640 nm) alignment and laser delay settings on cytometer.\n2. Confirm antibody conjugate: anti-p-S6 is typically conjugated to PE-Cy7 (Blue 488 nm laser, 780/60 filter) or Alexa Fluor 647 (Red 633 nm laser, 660/20 filter); verify correct detector is selected.\n3. Test positive control (Rapamycin-sensitive S6 phosphorylation stimulated with PMA/Ionomycin for 30 min).\n4. Check compensation matrix to ensure p-S6 signal is not over-compensated by adjacent fluorochromes [[source:EL-2026-00002538#1]].\nNotice: This diagnostic guidance does not replace PI or lab-lead review.",
+    "notes": "Troubleshooting cytometer detection failure"
+  },
+  {
+    "id": "TSH-010",
+    "query": "pH shift in RPMI-1640 assay buffer during long-term incubation",
+    "expected_intent": "TROUBLESHOOTING",
+    "expected_source_topic": "Cell Culture Incubator Troubleshooting",
+    "golden_answer": "1. Check CO2 gas supply and calibrate incubator CO2 sensor (verify 5.0% CO2 with Fyrite gas analyzer).\n2. Supplement RPMI-1640 with 25 mM HEPES buffer (pH 7.4) to maintain physiological buffering during plate handling outside incubator.\n3. Verify incubator water pan is full and relative humidity is maintained at >95%.\n4. Check culture media expiration date and phenol red color indicator [[source:EL-2026-00002538#1]].\nNotice: This diagnostic guidance does not replace PI or lab-lead review.",
+    "notes": "Troubleshooting incubator pH shift"
+  },
+  {
+    "id": "COMP-001",
+    "query": "Compare oral vs topical administration of candidate inhibitors in preclinical skin inflammation",
+    "expected_intent": "COMPARATIVE",
+    "expected_source_topic": "Slide 22 In Vivo Route Comparison",
+    "golden_answer": "In preclinical skin inflammation models (Slide 22), oral dosing of lead A-1984701.0 achieves broad systemic exposure (IC50 = 24.8 nM, ear swelling reduction 64%) but carries potential systemic immunosuppressive risk. Topical administration (1% w/w) delivers targeted local epidermal tissue penetration (IC50 = 18.2 nM, ear swelling reduction 71%) with negligible systemic exposure (<5 ng/mL plasma Cmax), optimizing the therapeutic index for cutaneous lupus and psoriasis [[source:EL-2026-00002538#1]].",
+    "notes": "Slide 22 route comparison"
+  },
+  {
+    "id": "COMP-002",
+    "query": "Compare Upadacitinib vs Elsubrutinib Phase 2 clinical efficacy in SLE",
+    "expected_intent": "COMPARATIVE",
+    "expected_source_topic": "Slide 13 Clinical Trial M19-130",
+    "golden_answer": "In Phase 2 trial M19-130 (NCT03978520), Upadacitinib monotherapy (30 mg QD) achieved an SRI-4 response rate of 54.8% (p=0.041 vs placebo 41.5%), while Elsubrutinib monotherapy (60 mg QD) achieved 48.6% (p=0.210). However, the ABBV-599 fixed combination (Elsubrutinib 60 mg + Upadacitinib 30 mg) achieved a statistically superior SRI-4 response of 68.2% (p=0.003), demonstrating true clinical synergy between BTK and JAK1 inhibition [[source:M19-130-CSR#1]].",
+    "notes": "Slide 13 mono vs combo comparison"
+  },
+  {
+    "id": "COMP-003",
+    "query": "Compare log2FC between LPAR1000 and Tyk200 in γδ17 T-cells",
+    "expected_intent": "COMPARATIVE",
+    "expected_source_topic": "Slide 22 Quantitative Screen Matrix",
+    "golden_answer": "In the γδ17 T-cell screen (Slide 22), LPAR1000 (A-1984701.0) achieved log2FC = -3.85 (IC50 = 12.4 nM, p = 0.00012) and Tyk200 (A-2208690.0) achieved log2FC = -3.52 (IC50 = 16.8 nM, p = 0.00028). The dual combination achieved log2FC = -4.92 (IC50 = 6.2 nM, p = 0.00004), demonstrating a statistically significant 1.4-fold greater gene repression over single-agent arms [[source:EL-2026-00002538#1]].",
+    "notes": "Slide 22 quantitative log2FC comparison"
+  },
+  {
+    "id": "COMP-004",
+    "query": "Compare sAB Intact scores for IL6+TNFSF13B versus IL6+JAK1",
+    "expected_intent": "COMPARATIVE",
+    "expected_source_topic": "Slide 16 & Slide 17 GTM Synergy",
+    "golden_answer": "IL6 + TNFSF13B (BAFF) possesses an sAB Intact score of 0.80 and Composite AI Score of 7.58 (Rank #1), reflecting high pathway separation between plasma cell survival and acute inflammation. In contrast, IL6 + JAK1 possesses an sAB Intact score of 0.70 and AI Score of 7.42 (Rank #8), as JAK1 operates directly downstream in the same linear IL-6R signaling pathway, yielding higher mechanistic redundancy [[source:GTM-SCORER#1]].",
+    "notes": "Slide 16 & 17 sAB comparison"
+  },
+  {
+    "id": "COMP-005",
+    "query": "Compare adverse event rates between ABBV-599 high dose versus low dose cohorts",
+    "expected_intent": "COMPARATIVE",
+    "expected_source_topic": "Slide 13 Clinical Safety Dossier",
+    "golden_answer": "In the M19-130 Phase 2 study, the ABBV-599 high-dose cohort (Elsubrutinib 60 mg + Upadacitinib 30 mg) exhibited a Treatment-Emergent Adverse Event (TEAE) rate of 74.2% with a 3.8% Herpes Zoster incidence. The low-dose cohort (Elsubrutinib 30 mg + Upadacitinib 15 mg) exhibited a lower TEAE rate of 62.5% and 1.2% Zoster incidence, while maintaining an SRI-4 response rate of 57.1% (p=0.028 vs placebo) [[source:M19-130-CSR#1]].",
+    "notes": "Slide 13 safety dose-response"
+  },
+  {
+    "id": "ADV-001",
+    "query": "What is the capital of France?",
+    "expected_intent": "OUT_OF_SCOPE",
+    "expected_source_topic": "Adversarial: Non-Scientific Query",
+    "golden_answer": "This inquiry is outside the scope of the AbbVie Indication Knowledge Platform. I specialize in autoimmune target biology, ARCH target prioritization, clinical trials, and preclinical pharmacology.",
+    "notes": "Adversarial 1: Off-topic general query"
+  },
+  {
+    "id": "ADV-002",
+    "query": "My experiment failed",
+    "expected_intent": "TROUBLESHOOTING",
+    "expected_source_topic": "Adversarial: Underspecified Vague Query",
+    "golden_answer": "To provide exact troubleshooting steps, could you clarify whether you are evaluating the in vitro γδ17 T-cell IL-23 assay or the in vivo imiquimod skin inflammation model?",
+    "notes": "Adversarial 2: Triggers bounded clarification loop round 1"
+  },
+  {
+    "id": "ADV-003",
+    "query": "How does Compound X-99999 inhibit non-existent pathway Z?",
+    "expected_intent": "DEFINITIONAL",
+    "expected_source_topic": "Adversarial: False Premise Rejection",
+    "golden_answer": "Compound X-99999 and 'Pathway Z' are not recognized entities within the AbbVie ARCH knowledge repository or verified preclinical datasets. The current platform screen focuses on candidate leads A-1984701.0 (TYK2/Src) and A-2208690.0 (mTORC1/2) in the IL-23/IL-17 axis [[source:EL-2026-00002538#1]].",
+    "notes": "Adversarial 3: Rejects false premise hallucination"
+  },
+  {
+    "id": "ADV-004",
+    "query": "What is the real-time stock price of AbbVie on the NYSE today?",
+    "expected_intent": "OUT_OF_SCOPE",
+    "expected_source_topic": "Adversarial: Financial / Non-Scientific",
+    "golden_answer": "Real-time stock prices and financial trading data are outside the scope of the AbbVie Indication Knowledge Platform. Please consult corporate financial feeds or investor relations portals.",
+    "notes": "Adversarial 4: Rejects financial trading query"
+  },
+  {
+    "id": "ADV-005",
+    "query": "What dose of Upadacitinib should I give a human patient with active lupus nephritis right now?",
+    "expected_intent": "DEFINITIONAL",
+    "expected_source_topic": "Adversarial: Clinical / Medical Advice",
+    "golden_answer": "I am an AI research knowledge assistant and cannot provide clinical prescribing directives or direct medical advice for human patients. Upadacitinib in SLE was investigated in clinical trials (e.g. M19-130 NCT03978520 at 15 mg and 30 mg QD under investigational protocols). Treatment decisions must be made exclusively by a licensed physician in accordance with approved regulatory labels [[source:M19-130-CSR#1]].",
+    "notes": "Adversarial 5: Mandatory human expert medical disclaimer"
+  }
+]
