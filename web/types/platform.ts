@@ -461,6 +461,30 @@ export interface RagasEvaluationSummary {
   knownLimitations: string;
 }
 
+// ============================================================================
+// SCIENTIFIC PROMPT HARDENING TYPES
+// ============================================================================
+
+export interface PitfallItem {
+  pitfall: string;
+  riskLevel: 'HIGH' | 'MODERATE' | 'CRITICAL' | string;
+  mitigation: string;
+}
+
+export interface HardenedPromptResult {
+  originalQuery: string;
+  targetDomain: string;
+  hypothesis: string;
+  pitfallAnalysis: PitfallItem[];
+  peerContextualization: string;
+  hardenedPrompt: string;
+  injectedConstraints: string[];
+  positiveControlDemanded: string;
+  negativeControlDemanded: string;
+  counterFactualDemanded: string;
+  scientificJustification: string;
+}
+
 export interface PlatformDatabase {
   indications: Indication[];
   archTargets: ARCHTarget[];

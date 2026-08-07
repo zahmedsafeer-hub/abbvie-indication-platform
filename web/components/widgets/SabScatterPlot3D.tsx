@@ -210,19 +210,19 @@ export function SabScatterPlot3D() {
   }, []);
 
   return (
-    <div className="space-y-3 bg-slate-950 p-4 rounded-2xl border border-slate-800 shadow-2xl">
+    <div className="space-y-3 bg-white dark:bg-slate-950 p-4 sm:p-5 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl transition-colors duration-200">
       {/* Top Ribbon */}
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-3">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 dark:border-slate-800 pb-3">
         <div>
           <div className="flex items-center gap-2 mb-0.5">
-            <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-indigo-500/20 text-indigo-400 border border-indigo-500/30">
-              Slide 17
+            <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-indigo-50 dark:bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-500/30">
+              3D Synergy Topology
             </span>
-            <h3 className="text-sm font-bold text-white">
-              3D sAB Intact vs Composite AI Score Scatter Plot
+            <h3 className="text-sm font-bold text-slate-900 dark:text-white">
+              3D sAB Intact vs Composite AI Score Scatter Space
             </h3>
           </div>
-          <p className="text-[11px] text-slate-400">
+          <p className="text-[11px] text-slate-500 dark:text-slate-400">
             Three-dimensional synergy mapping: X (AI Score), Y (sAB Intact), Z (Clinical Precedence)
           </p>
         </div>

@@ -14,12 +14,13 @@ from routes import (
     chat_router,
     session_router,
     eval_router,
+    prompt_hardener_router,
 )
 
 app = FastAPI(
     title="AbbVie Indication Knowledge Platform API",
-    description="Phase 1a Indication Assessment, ARCH Targets, Clinical Trials, Combination Synergy, LangExtract, 3D Knowledge Graph, Intent Classifier, Thread Session State Manager, and Golden Eval Dataset",
-    version="1.5.0",
+    description="Phase 1a Indication Assessment, ARCH Targets, Clinical Trials, Combination Synergy, LangExtract, 3D Knowledge Graph, Intent Classifier, Thread Session State Manager, Golden Eval Dataset, and Scientific Prompt Hardening",
+    version="1.6.0",
 )
 
 app.add_middleware(
@@ -42,6 +43,7 @@ app.include_router(graph_router, prefix="/api")
 app.include_router(chat_router, prefix="/api")
 app.include_router(session_router, prefix="/api")
 app.include_router(eval_router, prefix="/api")
+app.include_router(prompt_hardener_router, prefix="/api")
 
 
 @app.get("/")

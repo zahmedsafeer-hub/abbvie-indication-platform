@@ -14,12 +14,12 @@ describe("AbbVie R&D Interactive Widgets (Slides 11-19)", () => {
     const handleSelect = vi.fn();
     render(<MoaRankingTable onSelectTarget={handleSelect} />);
 
-    expect(screen.getByText("ARCH Target Prioritization & MOA Rankings")).toBeDefined();
+    expect(screen.getByText("Target MOA Rankings & Multi-Omics Genetics")).toBeDefined();
     expect(screen.getAllByText("TLR7").length).toBeGreaterThanOrEqual(1);
     expect(screen.getAllByText("IL6").length).toBeGreaterThanOrEqual(1);
 
     // Search filter
-    const searchInput = screen.getByPlaceholderText("Search targets...");
+    const searchInput = screen.getByPlaceholderText(/Search target/i);
     fireEvent.change(searchInput, { target: { value: "TYK2" } });
     expect(screen.getAllByText("TYK2").length).toBeGreaterThanOrEqual(1);
   });
@@ -46,7 +46,7 @@ describe("AbbVie R&D Interactive Widgets (Slides 11-19)", () => {
 
   it("ComboRankTable & RiskTable (Slides 16 & 18) render combo mechanisms and risk matrix", () => {
     render(<ComboRankTable />);
-    expect(screen.getByText("IL-6 Combination Synergy & GTM Rankings")).toBeDefined();
+    expect(screen.getByText("IL-6 Combination Synergy & GTM Link Prediction Rankings")).toBeDefined();
     expect(screen.getAllByText("TNFSF13B").length).toBeGreaterThanOrEqual(1);
 
     render(<RiskTable />);

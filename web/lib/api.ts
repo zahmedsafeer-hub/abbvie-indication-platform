@@ -26,6 +26,7 @@ import {
   CaseEvaluationResult,
   CaseEvaluationReport,
   RagasEvaluationSummary,
+  HardenedPromptResult,
 } from "@/types/platform";
 import { MOCK_DATABASE } from "./mock-data";
 
@@ -634,6 +635,50 @@ export async function runRagasCase(caseId: string): Promise<CaseEvaluationReport
       generatedResponse: "Model response",
       retrievedContext: "Grounding context",
       passedAllThresholds: true,
+    };
+  }
+}
+
+export async function hardenScientificPrompt(
+  query: string,
+  domainContext?: string
+): Promise<HardenedPromptResult> {
+  try {
+    const res = await fetch(`${API_BASE}/prompt/harden`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ query, domainContext }),
+    });
+    if (!res.ok) throw new Error("Prompt hardening failed");
+    return await res.json();
+  } catch (err) {
+    return {
+      originalQuery: query,
+      targetDomain: "Autoimmune Target Biology & Cellular Immunology",
+      hypothesis: `Evaluating mechanistic interventions for: '${query}'`,
+      pitfallAnalysis: [
+        {
+          pitfall: "Off-Target Pan-Kinase Toxicity & Non-Specific Cytotoxicity",
+          riskLevel: "CRITICAL",
+          mitigation: "Inject strict selectivity boundaries and IC50 therapeutic window demands.",
+        },
+        {
+          pitfall: "Correlation vs Causation Conflation in High-Throughput Omics",
+          riskLevel: "HIGH",
+          mitigation: "Demand orthogonal validation via phospho-flow and CRISPR controls.",
+        },
+      ],
+      peerContextualization: "Gold-standard immunological protocols require normalized positive and negative controls.",
+      hardenedPrompt: `Act as a Principal Computational Immunologist. Evaluate '${query}' with rigorous controls, 4PL IC50 fitting, and counter-factual failure modes.`,
+      injectedConstraints: [
+        "Demand positive and negative vehicle controls.",
+        "Report 95% confidence intervals.",
+        "Enforce 3 counter-factual failure modes.",
+      ],
+      positiveControlDemanded: "20 ng/mL recombinant IL-23 / PMA-Ionomycin",
+      negativeControlDemanded: "0.1% DMSO vehicle baseline",
+      counterFactualDemanded: "Provide 3 failure modes explaining translation risk.",
+      scientificJustification: "Injected controls and counter-factuals prevent confirmation bias.",
     };
   }
 }

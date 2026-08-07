@@ -10,6 +10,7 @@ from .graph import router as graph_router
 from .chat import router as chat_router
 from .session import router as session_router
 from .eval import router as eval_router
+from .prompt_hardener import router as prompt_hardener_router
 
 __all__ = [
     "targets_router",
@@ -24,4 +25,5 @@ __all__ = [
     "chat_router",
     "session_router",
     "eval_router",
+    "prompt_hardener_router",
 ]

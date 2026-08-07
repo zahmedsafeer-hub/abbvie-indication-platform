@@ -20,24 +20,24 @@ export function DossierReportViewer() {
   const [activeTab, setActiveTab] = useState<"M19-130" | "STAT1" | "IL6">("M19-130");
 
   return (
-    <div className="space-y-4 bg-slate-950 p-4 rounded-2xl border border-slate-800 shadow-2xl">
+    <div className="space-y-4 bg-white dark:bg-slate-950 p-4 sm:p-5 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl transition-colors duration-200">
       {/* Top Tabs */}
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-3">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 dark:border-slate-800 pb-3">
         <div>
           <div className="flex items-center gap-2 mb-0.5">
-            <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
-              Slides 13-15
+            <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-500/30">
+              Translational Dossier Intelligence
             </span>
-            <h3 className="text-sm font-bold text-white">
+            <h3 className="text-sm font-bold text-slate-900 dark:text-white">
               Competitive Intelligence & Clinical Dossier Viewer
             </h3>
           </div>
-          <p className="text-[11px] text-slate-400">
+          <p className="text-[11px] text-slate-500 dark:text-slate-400">
             Deep-dive clinical efficacy, SRI-4 endpoints, and target CI reports
           </p>
         </div>
 
-        <div className="flex items-center gap-1 bg-slate-900 p-1 rounded-xl border border-slate-800 text-xs">
+        <div className="flex items-center gap-1 bg-slate-100 dark:bg-slate-900 p-1 rounded-2xl border border-slate-200 dark:border-slate-800 text-xs">
           <button
             onClick={() => setActiveTab("M19-130")}
             className={`px-3 py-1 rounded-lg font-bold transition-all ${

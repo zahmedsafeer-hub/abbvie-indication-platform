@@ -59,7 +59,7 @@ describe("Executive AppShell & Side-Panels", () => {
     const handleSend = vi.fn();
     render(<OmniBar onSendMessage={handleSend} />);
 
-    const input = screen.getByPlaceholderText(/Ask me anything/i);
+    const input = screen.getByPlaceholderText(/Ask about ARCH targets/i);
     fireEvent.change(input, { target: { value: "What is mTORC1?" } });
     fireEvent.submit(input.closest("form")!);
 
