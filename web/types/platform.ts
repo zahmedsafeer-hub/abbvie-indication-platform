@@ -204,7 +204,25 @@ export interface DocumentExtractRequest {
 // 3D GRAPH & GTM SCORER TYPES
 // ============================================================================
 
-export type NodeType = 'Gene' | 'Compound' | 'Assay' | 'Disease' | 'Pathway';
+export type NodeType =
+  | 'Gene'
+  | 'Compound'
+  | 'Drug'
+  | 'DrugProduct'
+  | 'DrugConcept'
+  | 'CompoundSubstance'
+  | 'Ingredient'
+  | 'Assay'
+  | 'Endpoint'
+  | 'Disease'
+  | 'HealthCondition'
+  | 'PatientAdverseEvent'
+  | 'Pathway'
+  | 'Variant'
+  | 'Tissue'
+  | 'CellLine'
+  | 'CellType'
+  | string;
 
 export interface Graph3DNode {
   id: string;
@@ -224,12 +242,25 @@ export interface Graph3DNode {
 }
 
 export type RelationshipType =
+  | 'HAS_ACTIVITY_AGAINST'
+  | 'HAS_ANTAGONISM_AGAINST'
+  | 'HAS_AGONISM_AGAINST'
+  | 'ASSOCIATED_WITH'
+  | 'INCREASES_PHOSPHORYLATION'
+  | 'AFFECTS_TRANSLOCATION'
+  | 'SHARES_PATHWAY_WITH'
+  | 'TESTED_IN_CLINICAL_TRIALS_FOR'
+  | 'APPROVED_TREATMENT_FOR'
+  | 'HAS_SWAG_SCORE'
+  | 'HAS_HUMAN_GENETICS_EVIDENCE_ASSOCIATION'
+  | 'WAS_STUDIED'
   | 'TARGETS'
   | 'INHIBITS'
   | 'EXPRESSION_MODULATED_BY'
   | 'EVALUATED_IN'
   | 'COMBINED_WITH'
-  | 'SIGNALING_INTERACTION';
+  | 'SIGNALING_INTERACTION'
+  | string;
 
 export interface Graph3DEdge {
   id: string;
@@ -237,6 +268,8 @@ export interface Graph3DEdge {
   target: string;
   relationship: RelationshipType;
   weight: number;
+  strength?: number;
+  confidence?: number;
   sabIntact?: number | null;
   compositeAiScore?: number | null;
   color?: string | null;

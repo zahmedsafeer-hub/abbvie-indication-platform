@@ -34,3 +34,9 @@ def get_combo_rankings():
 def execute_cypher_query(req: CypherQueryRequest):
     service = get_arch_graph_service()
     return service.query_cypher(req.query)
+
+
+@router.get("/schema", response_model=Dict[str, Any])
+def get_arch_schema():
+    service = get_arch_graph_service()
+    return service.get_arch_v6_schema()

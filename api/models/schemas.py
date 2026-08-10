@@ -217,7 +217,7 @@ class DocumentExtractRequest(BaseModel):
 class Graph3DNode(BaseModel):
     id: str = Field(..., description="Unique node ID (e.g. IL6, mTORC1, A-1984701.0)")
     label: str = Field(..., description="Display label")
-    type: Literal['Gene', 'Compound', 'Assay', 'Disease', 'Pathway'] = Field(..., description="Node classification")
+    type: str = Field(..., description="Node classification (Gene, Compound, Drug, Disease, Endpoint, Variant, etc.)")
     x: float = Field(..., description="3D X coordinate")
     y: float = Field(..., description="3D Y coordinate")
     z: float = Field(..., description="3D Z coordinate")
@@ -235,13 +235,15 @@ class Graph3DEdge(BaseModel):
     id: str = Field(..., description="Edge identifier")
     source: str = Field(..., description="Source node ID")
     target: str = Field(..., description="Target node ID")
-    relationship: Literal['TARGETS', 'INHIBITS', 'EXPRESSION_MODULATED_BY', 'EVALUATED_IN', 'COMBINED_WITH', 'SIGNALING_INTERACTION'] = Field(
-        ..., description="Graph relationship type"
+    relationship: str = Field(
+        ..., description="Graph relationship type (e.g. HAS_ACTIVITY_AGAINST, ASSOCIATED_WITH, SHARES_PATHWAY_WITH, etc.)"
     )
-    weight: float = Field(1.0, description="Edge interaction weight or confidence")
-    sabIntact: Optional[float] = Field(None, description="sAB intact synergy metric")
-    compositeAiScore: Optional[float] = Field(None, description="Composite AI score")
-    color: Optional[str] = Field("#64748b", description="Edge render color")
+    weight: float = Field(1.0, description="Edge weight / confidence score")
+    strength: Optional[int] = Field(3, description="ARCH-v6.0 Evidence Strength (0-4 integer)")
+    confidence: Optional[float] = Field(0.95, description="ARCH-v6.0 Evidence Confidence (0.0-1.0 float)")
+    sabIntact: Optional[float] = Field(None, description="Biological non-redundancy / intact synergy score (sAB)")
+    compositeAiScore: Optional[float] = Field(None, description="Composite AI synergy score")
+    color: str = Field("#64748b", description="Edge render color")
 
 
 class Graph3DTopology(BaseModel):
