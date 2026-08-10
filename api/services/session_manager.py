@@ -229,10 +229,13 @@ class SessionStateManager:
 
         # 3. Detect Underspecified / Vague queries requiring clarification
         vague_patterns = [
-            r"^(why did it fail|why did.*fail|how to fix|it failed|the assay failed|bad reading|problem|what happened)(\.|\?|!)*$",
-            r"^(tell me about that|explain the experiment|what happened to the experiment)(\.|\?|!)*$",
+            r"\b(failed|fail|failure|error|didn'?t work|inconsistent|bad reading|problem|what happened)\b",
+            r"\b(tell me about that|explain the experiment|what happened to the experiment)\b",
         ]
-        is_vague = not has_specific_entity and any(re.search(pat, msg_clean) for pat in vague_patterns)
+        is_vague = not has_specific_entity and (
+            any(re.search(pat, msg_clean) for pat in vague_patterns)
+            or (session.clarificationCount > 0 and len(msg_clean.split()) < 7)
+        )
 
         # 4. Check Clarification Cap: if clarification_count >= 2 OR user says "I don't know" -> PIVOT!
         if (session.clarificationCount >= 2 and (is_vague or is_idk)) or is_idk:
