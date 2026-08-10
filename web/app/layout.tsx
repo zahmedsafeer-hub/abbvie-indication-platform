@@ -12,6 +12,8 @@ import {
   Sparkles,
 } from "lucide-react";
 import { ThemeProvider, ThemeToggle } from "@/components/theme/ThemeProvider";
+import { ChatProvider } from "@/context/ChatContext";
+import { GlobalLiveChatDrawer } from "@/components/layout/GlobalLiveChatDrawer";
 
 export const metadata = {
   title: "AbbVie Indication Knowledge Platform",
@@ -27,7 +29,10 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 min-h-screen flex flex-col antialiased selection:bg-blue-600 selection:text-white transition-colors duration-200">
         <ThemeProvider>
-          {children}
+          <ChatProvider>
+            {children}
+            <GlobalLiveChatDrawer />
+          </ChatProvider>
         </ThemeProvider>
       </body>
     </html>

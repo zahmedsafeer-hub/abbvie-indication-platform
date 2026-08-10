@@ -13,9 +13,10 @@ import {
   Sparkles,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useGlobalChat } from "@/context/ChatContext";
 
 interface OmniBarProps {
-  onSendMessage: (text: string) => void;
+  onSendMessage?: (text: string) => void;
   onOpenDocModal?: () => void;
   onOpenHardenerModal?: (currentQuery: string) => void;
   disabled?: boolean;
@@ -33,12 +34,25 @@ export function OmniBar({
 }: OmniBarProps) {
   const [input, setInput] = useState("");
   const [isRecording, setIsRecording] = useState(false);
+  const globalChat = useGlobalChat();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim() || disabled) return;
-    onSendMessage(input.trim());
+    const q = input.trim();
     setInput("");
+    if (onSendMessage) {
+      onSendMessage(q);
+    }
+    globalChat.sendMessage(q);
+  };
+
+  const handleQuickSend = (q: string) => {
+    setInput("");
+    if (onSendMessage) {
+      onSendMessage(q);
+    }
+    globalChat.sendMessage(q);
   };
 
   const toggleMic = () => {
@@ -130,40 +144,36 @@ export function OmniBar({
         </span>
         <button
           type="button"
-          onClick={() => {
-            setInput("What are the 48 node labels and evidence quality rules in ARCH-v6.0?");
-            onSendMessage("What are the 48 node labels and evidence quality rules in ARCH-v6.0?");
-          }}
+          onClick={() =>
+            handleQuickSend("What are the 48 node labels and evidence quality rules in ARCH-v6.0?")
+          }
           className="px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950 border border-slate-200 dark:border-slate-700/70 transition-colors"
         >
           ARCH-v6.0 Schema & Rules
         </button>
         <button
           type="button"
-          onClick={() => {
-            setInput("What were the Phase 2 SRI-4 results for ABBV-599 in study M19-130?");
-            onSendMessage("What were the Phase 2 SRI-4 results for ABBV-599 in study M19-130?");
-          }}
+          onClick={() =>
+            handleQuickSend("What were the Phase 2 SRI-4 results for ABBV-599 in study M19-130?")
+          }
           className="px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-purple-600 dark:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-950 border border-slate-200 dark:border-slate-700/70 transition-colors"
         >
           ABBV-599 Phase 2 (M19-130)
         </button>
         <button
           type="button"
-          onClick={() => {
-            setInput("What is the combination synergy between IL-6 and BAFF in SLE?");
-            onSendMessage("What is the combination synergy between IL-6 and BAFF in SLE?");
-          }}
+          onClick={() =>
+            handleQuickSend("What is the combination synergy between IL-6 and BAFF in SLE?")
+          }
           className="px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950 border border-slate-200 dark:border-slate-700/70 transition-colors"
         >
           IL-6 + BAFF Synergy (sAB=0.80)
         </button>
         <button
           type="button"
-          onClick={() => {
-            setInput("What is the IC50 of A-1984701.0 in the γδ17 screen (EL-2026-00002538)?");
-            onSendMessage("What is the IC50 of A-1984701.0 in the γδ17 screen (EL-2026-00002538)?");
-          }}
+          onClick={() =>
+            handleQuickSend("What is the IC50 of A-1984701.0 in the γδ17 screen (EL-2026-00002538)?")
+          }
           className="px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-amber-600 dark:text-amber-400 hover:bg-amber-50 dark:hover:bg-amber-950 border border-slate-200 dark:border-slate-700/70 transition-colors"
         >
           γδ17 Screen (ELN EL-2026-00002538)
