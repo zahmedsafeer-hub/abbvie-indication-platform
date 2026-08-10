@@ -172,6 +172,15 @@ class SessionStateManager:
         session = self.get_session(thread_id)
         msg_clean = user_message.strip().lower()
 
+        # 0. Check for Specific Scientific Entities that are DEFINITELY NOT vague
+        specific_keywords = [
+            "abbv-599", "m19-130", "sri-4", "elsubrutinib", "upadacitinib", "bicla",
+            "arch-v6", "schema", "node label", "relationship", "stat1", "tyk2", "il6", "il-6",
+            "baff", "tnfsf13b", "ic50", "a-1984701", "a-2208690", "synergy", "sab intact",
+            "combination", "imiquimod", "4% pfa", "zombie aqua", "swag", "toxicity", "risk matrix"
+        ]
+        has_specific_entity = any(k in msg_clean for k in specific_keywords)
+
         # 1. Detect "I don't know" / Uncertainty reply
         idk_patterns = [
             r"\b(i don'?t know|not sure|idk|no idea|unsure|dont know|skip|just answer|give me best effort)\b",
@@ -179,14 +188,53 @@ class SessionStateManager:
         ]
         is_idk = any(re.search(pat, msg_clean) for pat in idk_patterns)
 
-        # 2. Detect Underspecified / Vague queries requiring clarification
-        vague_patterns = [
-            r"\b(failed|fail|failure|error|didn'?t work|bad reading|problem|what happened)\b",
-            r"\b(tell me about that|what were the results|explain the experiment|why did it fail)\b",
-        ]
-        is_vague = any(re.search(pat, msg_clean) for pat in vague_patterns) or (session.clarificationCount > 0 and len(msg_clean.split()) < 7)
+        # 2. Check if user is answering a previous clarification with a specific route or model
+        is_answering_clarification = session.clarificationCount > 0 and any(
+            k in msg_clean for k in ["vivo", "imiquimod", "vitro", "gamma", "γδ", "oral", "topical", "ip", "intraperitoneal", "a-1984701", "a-2208690"]
+        )
 
-        # 3. Check Clarification Cap: if clarification_count >= 2 OR user says "I don't know" -> PIVOT!
+        if is_answering_clarification:
+            # Directly answer with the requested protocol/SOP
+            if "vivo" in msg_clean or "imiquimod" in msg_clean:
+                chat_gen = self.prompt_builder.generate_response("protocol for imiquimod-induced skin inflammation model", override_intent="PROTOCOL")
+            else:
+                chat_gen = self.prompt_builder.generate_response("troubleshooting γδ17 T-cell in vitro assay", override_intent="TROUBLESHOOTING")
+
+            self.add_turn(
+                thread_id=thread_id,
+                user_msg=user_message,
+                assistant_msg=chat_gen.response,
+                intent=chat_gen.intent,
+                citations=chat_gen.citations,
+                is_clarification=False,
+                is_pivot=False,
+            )
+            # Reset clarification count
+            cur = self.conn.cursor()
+            cur.execute("UPDATE thread_sessions SET clarification_count = 0 WHERE thread_id = ?", (thread_id,))
+            self.conn.commit()
+
+            latency_ms = round((time.time() - start_time) * 1000, 2)
+            return SessionChatResponse(
+                threadId=thread_id,
+                intent=chat_gen.intent,
+                response=chat_gen.response,
+                citations=chat_gen.citations,
+                clarificationCount=0,
+                isPivot=False,
+                assumptions=[],
+                qcSuggestions=[],
+                latencyMs=latency_ms,
+            )
+
+        # 3. Detect Underspecified / Vague queries requiring clarification
+        vague_patterns = [
+            r"^(why did it fail|why did.*fail|how to fix|it failed|the assay failed|bad reading|problem|what happened)(\.|\?|!)*$",
+            r"^(tell me about that|explain the experiment|what happened to the experiment)(\.|\?|!)*$",
+        ]
+        is_vague = not has_specific_entity and any(re.search(pat, msg_clean) for pat in vague_patterns)
+
+        # 4. Check Clarification Cap: if clarification_count >= 2 OR user says "I don't know" -> PIVOT!
         if (session.clarificationCount >= 2 and (is_vague or is_idk)) or is_idk:
             # PIVOT TO BEST-EFFORT ANSWER WITH EXPLICIT ASSUMPTIONS & QC CHECKS
             assumptions = [
