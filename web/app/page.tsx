@@ -64,6 +64,15 @@ export default function HomePage() {
   const [activeSession, setActiveSession] = useState<ThreadSessionData | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
+  const [viewMode, setViewMode] = useState<"both" | "chat_only" | "widget_only">("both");
+  const chatEndRef = React.useRef<HTMLDivElement | null>(null);
+
+  const scrollToBottom = () => {
+    setTimeout(() => {
+      chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, 100);
+  };
+
   const loadInitialData = async () => {
     try {
       const list = await listThreadSessions();
@@ -98,6 +107,7 @@ export default function HomePage() {
     try {
       const s = await fetchThreadSession(tid);
       setActiveSession(s);
+      scrollToBottom();
     } catch (err) {
       console.error(err);
     }
@@ -111,6 +121,7 @@ export default function HomePage() {
     setActiveThreadId(created.threadId);
     setActiveSession(created);
     setActiveWidget("none");
+    scrollToBottom();
   };
 
   const handleDeleteThread = async (tid: string) => {
@@ -142,6 +153,7 @@ export default function HomePage() {
     }
 
     setLoading(true);
+    scrollToBottom();
     try {
       const res = await postThreadChatMessage(activeThreadId, text);
       const updated = await fetchThreadSession(activeThreadId);
@@ -150,10 +162,12 @@ export default function HomePage() {
       if (res.citations && res.citations.length > 0) {
         setActiveCitation(res.citations[0]);
       }
+      scrollToBottom();
     } catch (err) {
       console.error(err);
     } finally {
       setLoading(false);
+      scrollToBottom();
     }
   };
 
@@ -430,6 +444,22 @@ export default function HomePage() {
               </div>
             </div>
           )}
+
+          {/* Real-time Assistant Generating Indicator */}
+          {loading && (
+            <div className="flex flex-col items-start space-y-1.5 animate-pulse">
+              <div className="flex items-center gap-1.5 text-[10px] font-mono text-blue-600 dark:text-blue-400">
+                <Bot className="w-3.5 h-3.5 animate-spin" />
+                <span>AbbVie AI Assistant synthesizing grounded answer from ARCH-v6.0 evidence...</span>
+              </div>
+              <div className="p-4 rounded-3xl bg-white dark:bg-slate-900 border border-blue-200 dark:border-blue-800 text-slate-600 dark:text-slate-400 text-xs italic shadow-md">
+                Retrieving multi-omics target priors, clinical endpoints, and verified citations...
+              </div>
+            </div>
+          )}
+
+          {/* Anchor for Auto-Scroll */}
+          <div ref={chatEndRef} />
         </div>
 
         {/* Bottom Floating OmniBar */}
