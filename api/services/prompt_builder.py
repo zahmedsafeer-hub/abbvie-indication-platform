@@ -54,7 +54,7 @@ class PromptBuilderAndGenerator:
 
         q_lower = query.lower()
 
-        # Step 3: Handle Definitional Intent
+        # Step 3: Handle Definitional & Scientific Retrieval Intent
         if intent == "DEFINITIONAL":
             citations = [
                 CitationItem(
@@ -71,12 +71,70 @@ class PromptBuilderAndGenerator:
                 ),
             ]
 
-            if "mtorc" in q_lower or "mtor" in q_lower:
+            # 1. ARCH-v6.0 Schema & Knowledge Graph Queries
+            if any(k in q_lower for k in ["arch-v6", "schema", "ontology", "node labels", "evidence quality", "strength", "confidence"]):
+                citations = [
+                    CitationItem(
+                        docId="ARCH-v6.0-SCHEMA",
+                        page=1,
+                        snippet="ARCH-v6.0 is an enterprise pharmaceutical knowledge graph containing 48 node labels and over 100 relationship types with STRENGTH (0-4) and CONFIDENCE (0.0-1.0) properties.",
+                        citationTag="[[source:ARCH-v6.0-SCHEMA#1]]",
+                    ),
+                    CitationItem(
+                        docId="ARCH-v6.0-RELATIONSHIPS",
+                        page=2,
+                        snippet="Core relationships include HAS_ACTIVITY_AGAINST, ASSOCIATED_WITH, INCREASES_PHOSPHORYLATION, and TESTED_IN_CLINICAL_TRIALS_FOR with default filter CONFIDENCE >= 0.5.",
+                        citationTag="[[source:ARCH-v6.0-RELATIONSHIPS#2]]",
+                    ),
+                ]
+                text = (
+                    "**ARCH-v6.0** is the enterprise AbbVie pharmaceutical knowledge graph connecting drugs, compounds, genes, diseases, and experimental endpoints [[source:ARCH-v6.0-SCHEMA#1]]. "
+                    "It encompasses **48 standardized node labels** (such as Gene, Compound, Drug, Disease, Endpoint, Variant, Tissue) and **over 100 biological and clinical relationship types** [[source:ARCH-v6.0-RELATIONSHIPS#2]]. "
+                    "Every relationship carries explicit evidence metrics: **STRENGTH** (integer 0–4) and **CONFIDENCE** (float 0.0–1.0 probability), with a mandatory query filtering threshold of `CONFIDENCE >= 0.5` [[source:ARCH-v6.0-SCHEMA#1]]."
+                )
+            # 2. ABBV-599 Clinical Trial Queries
+            elif any(k in q_lower for k in ["abbv-599", "m19-130", "sri-4", "elsubrutinib", "clinical trial", "phase 2 sle"]):
+                citations = [
+                    CitationItem(
+                        docId="CLINICAL-TRIAL-M19-130",
+                        page=14,
+                        snippet="In Phase 2 study M19-130 in SLE, ABBV-599 achieved an SRI-4 response rate of 68.2% vs 41.5% placebo (p = 0.003).",
+                        citationTag="[[source:CLINICAL-TRIAL-M19-130#14]]",
+                    )
+                ]
+                text = (
+                    "**ABBV-599** is a dual-action investigational therapy combining Elsubrutinib (ABBV-105, 60 mg, selective BTK inhibitor) and Upadacitinib (ABT-494, 30 mg, selective JAK1 inhibitor) [[source:CLINICAL-TRIAL-M19-130#14]]. "
+                    "In the Phase 2 clinical study **M19-130** in active Systemic Lupus Erythematosus, ABBV-599 achieved a **68.2% SRI-4 response rate** at Week 24 compared to **41.5% in the placebo group (p = 0.003)** [[source:CLINICAL-TRIAL-M19-130#14]]. "
+                    "This dual inhibition demonstrated significant BICLA improvements and steroid-sparing benefit with manageable adverse event profiles [[source:CLINICAL-TRIAL-M19-130#14]]."
+                )
+            # 3. IL-6 Combination Synergy Queries
+            elif any(k in q_lower for k in ["il6", "il-6", "combo", "synergy", "baff", "tnfsf13b", "sab"]):
+                citations = [
+                    CitationItem(
+                        docId="SYNERGY-IL6-COMBOS",
+                        page=16,
+                        snippet="Top computational synergy pair: IL6 + TNFSF13B (BAFF inhibitor, composite AI score 7.58, sAB intact synergy 0.80).",
+                        citationTag="[[source:SYNERGY-IL6-COMBOS#16]]",
+                    ),
+                    CitationItem(
+                        docId="ARCH-TARGET-IL6",
+                        page=1,
+                        snippet="IL6: SWAG Score 8.94, SWAG strength 0.93, Causal alignment 0.94, Phase 3.",
+                        citationTag="[[source:ARCH-TARGET-IL6#1]]",
+                    )
+                ]
+                text = (
+                    "In the ARCH computational synergy assessment for SLE, **IL-6 (SWAG 8.94) + TNFSF13B (BAFF)** is ranked as the #1 combination pair with a composite AI score of **7.58** and an intact synergy metric of **sAB = 0.80** [[source:SYNERGY-IL6-COMBOS#16]]. "
+                    "This combination produces non-redundant therapeutic benefit by simultaneously blocking plasma cell differentiation (via IL-6 inhibition) and eliminating mature B-cell survival signals (via BAFF blockade) [[source:SYNERGY-IL6-COMBOS#16]]."
+                )
+            # 4. mTORC Queries
+            elif "mtorc" in q_lower or "mtor" in q_lower:
                 text = (
                     "mTORC1 (mechanistic target of rapamycin complex 1) is a nutrient-sensing serine/threonine kinase complex that acts as a downstream effector of the IL-23 receptor axis in γδ17 T-cells [[source:PUB-34982103#1]]. "
                     "Upon IL-23 stimulation, mTORC1 phosphorylates ribosomal protein S6 (p-S6), driving cellular growth, translational elongation, and metabolic priming required for pathogenic IL-17A cytokine production [[source:EL-2026-00002538#1]]. "
                     "Catalytic blockade of mTORC1 alongside mTORC2 by dual inhibitor A-2208690.0 abolishes IL-23-dependent clonal acanthosis without triggering cytotoxic necrosis [[source:EL-2026-00002538#1]]."
                 )
+            # 5. TYK2 Target Queries
             elif "tyk2" in q_lower:
                 citations.append(
                     CitationItem(
@@ -90,19 +148,6 @@ class PromptBuilderAndGenerator:
                     "TYK2 (Tyrosine Kinase 2) is an intracellular non-receptor Janus kinase that selectively transduces signaling downstream of IL-12, IL-23, and Type I interferon receptors [[source:ARCH-TARGET-TYK2#1]]. "
                     "In the AbbVie ARCH platform, TYK2 achieves an ARCH SWAG Score of 8.75 with 91% association strength and 89% causal pathway alignment in SLE and psoriasis models [[source:ARCH-TARGET-TYK2#1]]. "
                     "AbbVie lead A-1984701.0 selectively inhibits TYK2 and Src family kinases, achieving potent in vitro suppression (log2FC = -3.85, IC50 = 12.4 nM) [[source:EL-2026-00002538#1]]."
-                )
-            elif "il6" in q_lower or "il-6" in q_lower:
-                citations.append(
-                    CitationItem(
-                        docId="ARCH-TARGET-IL6",
-                        page=1,
-                        snippet="IL6: SWAG Score 8.94, SWAG strength 0.93, Causal alignment 0.94, Phase 3.",
-                        citationTag="[[source:ARCH-TARGET-IL6#1]]",
-                    )
-                )
-                text = (
-                    "IL-6 (Interleukin-6) is a pleiotropic pro-inflammatory cytokine that binds the IL-6R/gp130 receptor complex to drive STAT3 phosphorylation and B-cell hyperactivity in SLE and inflammatory skin diseases [[source:ARCH-TARGET-IL6#1]]. "
-                    "Ranked #2 in the ARCH pipeline with a SWAG score of 8.94 (93% strength), IL-6 demonstrates strong combination synergy with TNFSF13B (sAB=0.80) and TYK2 (sAB=0.79) [[source:ARCH-TARGET-IL6#1]]."
                 )
             else:
                 text = (
